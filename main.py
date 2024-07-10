@@ -149,7 +149,7 @@ if __name__ == "__main__":
             accept_cookies(driver)
             save_cookies(driver, 'cookies.pkl')
         
-        linkedin_url = 'https://www.linkedin.com/search/results/people/?activelyHiringForJobTitles=%5B%22-100%22%5D&geoUrn=%5B%22101174742%22%2C%22103644278%22%2C%22102713980%22%5D&keywords=tech%20recruiter&origin=FACETED_SEARCH&sid=d!G'
+        linkedin_url = 'https://www.linkedin.com/search/results/people/?activelyHiringForJobTitles=%5B%229%22%2C%2239%22%2C%2225201%22%5D&geoUrn=%5B%22101174742%22%2C%22103644278%22%2C%22102713980%22%5D&keywords=tech%20recruiter&origin=FACETED_SEARCH&sid=Agr'
         navigate_and_send_invites(driver, linkedin_url)
     finally:
         driver.quit()
