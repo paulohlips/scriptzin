@@ -70,14 +70,14 @@ def add_note_and_send_invite(driver, button, recruiter_name):
     random_sleep()
 
     send_now = WebDriverWait(driver, 5).until(
-        EC.element_to_be_clickable((By.CSS_SELECTOR, '[aria-label^="Add a note"]'))
+        EC.element_to_be_clickable((By.CSS_SELECTOR, '[aria-label^="Adicionar nota"]'))
     )
     send_now.click()
     random_sleep()
 
     try:
         email_input = driver.find_element(By.NAME, "email")
-        dismiss_button = driver.find_element(By.CSS_SELECTOR, '[aria-label="Dismiss"]')
+        dismiss_button = driver.find_element(By.CSS_SELECTOR, '[aria-label="Fechar"]')
         dismiss_button.click()
         random_sleep()
         return False
@@ -95,7 +95,7 @@ def add_note_and_send_invite(driver, button, recruiter_name):
     message_textarea.send_keys(message)
 
     send_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.CSS_SELECTOR, '[aria-label="Send invitation"]'))
+        EC.element_to_be_clickable((By.CSS_SELECTOR, '[aria-label="Enviar convite"]'))
     )
     send_button.click()
     random_sleep()
@@ -107,7 +107,7 @@ def navigate_and_send_invites(driver, url):
     invites = 0
 
     while True:
-        if invites == 50: break
+        if invites == 20: break
 
         url = url[:url.index("page=")] + f"page={page_num}"
         driver.get(url)
@@ -115,7 +115,7 @@ def navigate_and_send_invites(driver, url):
         random_sleep()
         try:
             connect_buttons = WebDriverWait(driver, 10).until(
-                EC.presence_of_all_elements_located((By.CSS_SELECTOR, '[aria-label^="Invite"]'))
+                EC.presence_of_all_elements_located((By.CSS_SELECTOR, '[aria-label^="Convidar"]'))
             )
         except Exception as e:
             print(f"Exception: {e}")
@@ -125,7 +125,7 @@ def navigate_and_send_invites(driver, url):
         for button in connect_buttons:
             try:
                 aria_label = button.get_attribute('aria-label')
-                recruiter_name = aria_label.replace('Invite ', '').replace(' to connect', '').split()[0]
+                recruiter_name = aria_label.replace('Convidar ', '').replace(' para', '').split()[0]
                 success = add_note_and_send_invite(driver, button, recruiter_name)
                 if success:
                     invites += 1
@@ -149,7 +149,7 @@ if __name__ == "__main__":
             accept_cookies(driver)
             save_cookies(driver, 'cookies.pkl')
         
-        linkedin_url = 'https://www.linkedin.com/search/results/people/?activelyHiringForJobTitles=%5B%22-100%22%5D&geoUrn=%5B%22106057199%22%5D&keywords=tech%20recruiter&origin=FACETED_SEARCH&sid=!2N'
+        linkedin_url = 'https://www.linkedin.com/search/results/people/?activelyHiringForJobTitles=%5B%22-100%22%5D&geoUrn=%5B%22101174742%22%2C%22103644278%22%2C%22102713980%22%5D&keywords=tech%20recruiter&origin=FACETED_SEARCH&sid=d!G'
         navigate_and_send_invites(driver, linkedin_url)
     finally:
         driver.quit()
