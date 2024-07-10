@@ -49,6 +49,10 @@ To run the application, use the following command:
    python main.py
    ```
 
+## Change URL
+
+You need to change the URL if you need new recruiter search filters.
+
 **Exemple of linkedin_url:**
 https://www.linkedin.com/search/results/people/?activelyHiringForJobTitles=%5B%22-100%22%5D&geoUrn=%5B%22101174742%22%2C%22103644278%22%2C%22102713980%22%5D&keywords=tech%20recruiter&origin=FACETED_SEARCH&sid=d!G
 
